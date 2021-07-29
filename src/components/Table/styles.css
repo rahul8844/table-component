@@ -3,7 +3,7 @@
 }
 
 table{
-  width: 90vw;
+  width: 88.4vw;
 }
 
 th{
@@ -12,6 +12,7 @@ th{
   font-weight: 600;
   text-align: left;
   border-bottom: 1px solid #dcdcdc;
+  cursor: pointer;
 }
 
 td{

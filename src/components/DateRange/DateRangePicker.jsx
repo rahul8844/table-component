@@ -23,12 +23,15 @@ const DateRange = (props)=>{
   };
   return (
     <div>
-      <div className ="date-toggler button" onClick={onToggle}>
-        <img src="/icons/calenderi.svg" style={{ marginRight: '2px'}}/>
-        {value.start.format("MMM DD")}
-        {" - "}
-        {value.end.format("MMM DD, YYYY")}
-      </div>
+      <div style={{display:'flex'}}>
+        <div className ="date-toggler button" onClick={onToggle}>
+          <img src="/icons/calenderi.svg" style={{ marginRight: '2px'}} alt={""}/>
+          {value.start.format("MMM DD")}
+          {" - "}
+          {value.end.format("MMM DD, YYYY")}
+        </div>
+      {isOpen && (<button className="date-apply button" onClick={onToggle}>Apply</button>)}
+      </div>  
       {isOpen && (
         <div className="date-range">
           <DateRangePicker

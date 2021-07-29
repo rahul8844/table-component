@@ -1,63 +1,47 @@
-import moment from 'moment';
-import { useEffect, useState } from 'react';
-import './App.css';
-import Header from './components/Header/Header';
-import Settings from './components/Settings/Settings';
-import Table from './components/Table/Table';
-import { API_APP_URL, API_REPORT_URL } from './utils/apiUrl';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
+import Analytics from "./page/Analytics";
+import { SET_APPS } from "./redux/ActionType";
+import { API_APP_URL } from "./utils/apiUrl";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./page/Home";
 
 function App() {
-  const [columns,setColumns] = useState([]);
-  const [tableData,setTableData] = useState([]);
-  const [apps,setApps] = useState([]);
-  const [showSettings,setShowSettings]=useState(true);
-  const [startDate,setStartDate] = useState(moment().subtract(1, "months").format('YYYY-MM-DD'));
-  const [endDate,setEndDate] = useState(moment().format('YYYY-MM-DD'));
+  const dispatch = useDispatch();
+  const apps = useSelector((state) => state.apps);
 
-  const fetchData = async(apps)=>{
-    const res = await fetch(`${API_REPORT_URL}?startDate=${startDate}&endDate=${endDate}`);
-    const results = await res.json();
-    if(results.data){
-      let tableData = results.data.map(obj=>{
-        obj['fill_rate'] = (obj['requests']/obj['responses'] *100).toFixed(2);
-        obj['ctr'] = (obj['clicks']/obj['impressions'] *100).toFixed(2);
-        obj['app'] = apps.filter(app=>app.app_id===obj['app_id'])[0]?.app_name;
-        return obj;
-      });
-      setTableData(tableData);
-    }
-  }
-
-  const fetchApps = async()=>{
+  const fetchApps = async () => {
     const res = await fetch(`${API_APP_URL}`);
     const results = await res.json();
-    if(results.data){
-      setApps(results.data);
-      fetchData(results.data);
+    if (results.data) {
+      dispatch({
+        type: SET_APPS,
+        apps: results.data,
+      });
     }
-  }
+  };
 
-  const onDateChange =(val)=>{
-    setStartDate(val.start.format("YYYY-MM-DD"));
-    setEndDate(val.end.format("YYYY-MM-DD"));
-  }
-
-  useEffect(()=>{
+  useEffect(() => {
     fetchApps();
-  },[endDate]);
+  }, []);
 
-  useEffect(()=>{
-    fetchApps();
-  },[]);
   return (
-    <div className="App">
-      <div className="w-5 side-panel"></div>
-      <div style={{width: '93vw'}}>
-        <Header changeSettingsView={()=>setShowSettings(!showSettings)} dateChange={onDateChange}/>
-        {showSettings && <Settings applyChanges={setColumns} close={()=>setShowSettings(!showSettings)}/>}
-        <Table columns={columns} data ={tableData}/>
+    <Router>
+      <div className="App">
+        <nav>
+          <a href={'/analytics'}>Analytics</a>
+        </nav>
+        <Switch>
+          <Route path="/analytics">
+            <Analytics />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
 

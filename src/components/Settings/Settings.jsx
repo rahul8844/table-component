@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { COLUMNS } from "../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_COLUMNS } from "../../redux/ActionType";
 import './styles.css';
 
 const activeStyle={
@@ -8,6 +9,8 @@ const activeStyle={
 
 const Settings =(props)=>{
   const [columns,setColumns] = useState([]);
+  const storedColumns = useSelector(state=>state.columns);
+  const dispatch = useDispatch();
 
   const allowDrop = (ev) =>{
     ev.preventDefault();
@@ -43,8 +46,15 @@ const Settings =(props)=>{
     }
   }
 
+  const apply = ()=>{
+    dispatch({
+      type: SET_COLUMNS,
+      columns:columns
+    });
+  }
+
   useEffect(()=>{
-    setColumns(COLUMNS);
+    setColumns(storedColumns);
   },[])
 
   return (
@@ -65,7 +75,7 @@ const Settings =(props)=>{
       </div>
       <div className="action">
         <button className="close button" onClick={props.close}>Close</button>
-        <button className="apply button" onClick={()=>props.applyChanges(columns)}>Apply Changes</button>
+        <button className="apply button" onClick={apply}>Apply Changes</button>
       </div>
     </div>
   );

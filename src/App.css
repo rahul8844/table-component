@@ -3,13 +3,23 @@
   display: flex;
   height: min-content;
 }
-.w-5{
-  width:5%;
-}
 
-.side-panel{
-  background-color: #192F48;
-}
 .App-link {
   color: #61dafb;
+}
+
+nav a{
+  color: #FFFFFF;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav{
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #192F48;
+}
+
+a:hover{
+  opacity: 0.5;
 }
