@@ -1,0 +1,66 @@
+
+.setting-wrapper{
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 4px;
+  margin-left: 20px;
+}
+
+.setting-heading{
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px;
+}
+
+.setting-div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.setting-columns{
+  border: 1px solid rgb(236, 236, 236);
+  width: 11.7vw;
+  border-radius:4px;
+  padding: 6px 10px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 10px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.action{
+  display: flex;
+  justify-content: flex-end;
+}
+
+button{
+  padding: 10px;
+  margin: 10px;
+}
+
+.apply{
+  background-color: #3B6FED;
+  border: 1px solid #3B6FED;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.close{
+  background-color: #FFFFFF;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  color: #3B6FED;
+  cursor: pointer;
+}
+
+.button:active{
+  opacity: 0.5;
+}
+
+

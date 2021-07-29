@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  display: flex;
+  height: min-content;
+}
+.w-5{
+  width:5%;
+}
+
+.side-panel{
+  background-color: #192F48;
+}
+.App-link {
+  color: #61dafb;
+}

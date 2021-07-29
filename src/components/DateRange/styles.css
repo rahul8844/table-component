@@ -1,0 +1,30 @@
+.date-toggler{
+  border: 1px solid rgb(206, 206, 206);
+  width: 11vw;
+  white-space: nowrap;
+  border-radius:4px;
+  padding: 6px 10px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button:active{
+  opacity: 0.5;
+}
+
+.date-range{
+  position: absolute;
+  left: 6vw;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  border: 1px solid rgb(206, 206, 206);
+}
+
+

@@ -1,0 +1,22 @@
+.table-page{
+  margin: 20px;
+}
+
+table{
+  width: 90vw;
+}
+
+th{
+  color: grey;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+td{
+  border-bottom: 1px solid #dcdcdc;
+  text-align: left;
+  padding: 10px 0px;
+  font-size: 14px;
+}
